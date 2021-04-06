@@ -15,8 +15,18 @@
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
 #' @examples
 #'
-#' countSeqs(Hsapiens, GRanges("chr1", IRanges(1e6 + c(1,101), width=100)),
-#' DNAStringSet(c("AA", "AT", "GG")))
+#' #Charge Hsapiens genome
+#' library(BSgenome.Hsapiens.UCSC.hg38)
+#'
+#' #Get a GRanges object which contains regions of interest
+#' library(GenomicRanges)
+#' regs <-GRanges("chr1", IRanges(1e6 + c(1,101), width=100))
+#'
+#' #Get a DNAStringSet which contains the sequences to be mapped
+#' library(Biostrings)
+#' seqs <- DNAStringSet(c("AA", "AT", "GG"))
+#'
+#' countSeqs(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 #'
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
