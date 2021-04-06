@@ -1,0 +1,42 @@
+#' Count reads mapped on multiple regions of a genome
+#'
+#' This function returns an overall count for each search sequence within the
+#' interesting genomic regions. Also overlapping sequences.
+#'
+#' @usage countSeqs(genome, regions, sequences)
+#' @param genome A genome of BSgenome class
+#' @param regions A GRanges which specify the interesting regions
+#' @param sequences A DNAStringSet which contains the sequences to be matched
+#' within the regions
+#' @return Matrix of integers, the columns are the sequences, the rows are the
+#' regions and the cells the overall counts
+#' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
+#' Raffarelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
+#' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
+#' @examples
+#'
+#' countSeqs(Hsapiens, GRanges("chr1", IRanges(1e6 + c(1,101), width=100)),
+#' DNAStringSet(c("AA", "AT", "GG")))
+#'
+#' @importFrom BSgenome getSeq
+#' @importFrom BSgenome vcountPattern
+#' @export
+countSeqs <- function(genome, regions, sequences) {
+  #Extract sequence from genome's regions and calculate matrix with return
+  #values
+  dnaSet <- getSeq(genome, regions)
+  mat <- vapply(sequences, vcountPattern, numeric(2), dnaSet)
+
+  #Give the sequences' names to the columns
+  if(is.null(names(sequences))) {
+    colnames(mat) <- lapply(seq(1:length(sequences)),
+                            function(i) paste0("seq",i))
+  } else {
+    colnames(mat) <- names(sequences)
+  }
+
+  #Give the regions' names to the rows
+  rownames(mat) <- lapply(seq(1:length(regions)),
+                          function(i) paste0("reg",i))
+  return(mat)
+}
