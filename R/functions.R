@@ -20,12 +20,13 @@
 #'
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
+#' @importFrom GenomicRanges seqnames start
 #' @export
 countSeqs <- function(genome, regions, sequences) {
   #Extract sequence from genome's regions and calculate matrix with return
   #values
-  dnaSet <- getSeq(genome, regions)
-  mat <- vapply(sequences, vcountPattern, numeric(2), dnaSet)
+  dnaSet <- BSgenome::getSeq(genome, regions)
+  mat <- vapply(sequences, BSgenome::vcountPattern, numeric(2), dnaSet)
 
   #Give the sequences' names to the columns
   if(is.null(names(sequences))) {
@@ -36,7 +37,12 @@ countSeqs <- function(genome, regions, sequences) {
   }
 
   #Give the regions' names to the rows
-  rownames(mat) <- lapply(seq(1:length(regions)),
+  if(is.null(GenomicRanges::seqnames(regions))) {
+    rownames(mat) <- lapply(seq(1:length(regions)),
                           function(i) paste0("reg",i))
+  } else {
+    rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
+                           GenomicRanges::start(regions), sep = ":")
+  }
   return(mat)
 }
