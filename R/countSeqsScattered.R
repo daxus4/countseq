@@ -2,16 +2,16 @@
 #'
 #' This function returns an overall count for each search sequence within the
 #' interesting genomic regions. Also overlapping sequences. It's the best
-#' choice when you think that there are many sequences that match in many
-#' regions; otherwise it's best to use countSeqsScattered for less memory usage.
+#' choice when you think that there are few sequences that match in many
+#' regions; otherwise you an use countSeqs.
 #'
-#' @usage countSeqs(genome, regions, sequences)
+#' @usage countSeqsScattered(genome, regions, sequences)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
 #' within the regions
-#' @return Matrix of integers, the columns are the sequences, the rows are the
-#' regions and the cells the overall counts
+#' @return list where for each sequence that have a match there is a list of
+#' the match with the region and the start.
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
@@ -35,27 +35,7 @@
 #' @importFrom GenomicRanges seqnames start
 #' @export
 countSeqs <- function(genome, regions, sequences) {
-  #Extract sequence from genome's regions and calculate matrix with return
-  #values
   dnaSet <- BSgenome::getSeq(genome, regions)
-  mat <- vapply(sequences, BSgenome::vcountPattern, numeric(length(regions)),
-                dnaSet)
+  listSeq <- lapply(sequences, BSgenome::vcountPattern, dnaSet)
 
-  #Give the sequences' names to the columns
-  if(is.null(names(sequences))) {
-    colnames(mat) <- lapply(seq(1,length(sequences)),
-                            function(i) paste0("seq",i))
-  } else {
-    colnames(mat) <- names(sequences)
-  }
-
-  #Give the regions' names to the rows
-  if(is.null(GenomicRanges::seqnames(regions))) {
-    rownames(mat) <- lapply(seq(1,length(regions)),
-                          function(i) paste0("reg",i))
-  } else {
-    rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
-                           GenomicRanges::start(regions), sep = ":")
-  }
-  return(mat)
 }
