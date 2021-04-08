@@ -28,14 +28,40 @@
 #' library(Biostrings)
 #' seqs <- DNAStringSet(c("AA", "AT", "GG"))
 #'
-#' countSeqs(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+#' countSeqsScattered(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 #'
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
 #' @export
-countSeqs <- function(genome, regions, sequences) {
+countSeqsScattered <- function(genome, regions, sequences) {
+  #Extract sequence from genome's regions and calculate matrix with return
+  #values
   dnaSet <- BSgenome::getSeq(genome, regions)
-  listSeq <- lapply(sequences, BSgenome::vcountPattern, dnaSet)
+  
+  listSeq <- lapply(sequences, function(seq) {
+    #calculate matches between sequence and regions
+    countMatches <- BSgenome::vcountPattern(seq, dnaSet)
+    
+    #Give the regions' names to the vector
+    if(is.null(GenomicRanges::seqnames(regions))) {
+      names(countMatches) <- lapply(seq(1,length(regions)),
+                              function(i) paste0("reg",i))
+    } else {
+      names(countMatches) <- paste(as.vector(GenomicRanges::seqnames(regions)),
+                             GenomicRanges::start(regions), sep = ":")
+    }
+    #Delete regions with no matches
+    countMatches <- countMatches[countMatches > 0]
+  })
+  
+  #Give the sequences' names to the elements of listSeq
+  if(is.null(names(sequences))) {
+    names(listSeq) <- lapply(seq(1,length(sequences)),
+                            function(i) paste0("seq",i))
+  } else {
+    names(listSeq) <- names(sequences)
+  }
 
+  return(listSeq)
 }
