@@ -2,6 +2,8 @@
 
 export(countSeqs)
 export(countSeqsScattered)
+export(sortSeqsList)
+export(sortSeqsMatrix)
 importFrom(BSgenome,getSeq)
 importFrom(BSgenome,vcountPattern)
 importFrom(GenomicRanges,seqnames)

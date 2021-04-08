@@ -1,8 +1,8 @@
 #' Sort list returned from countSeqScattered
 #'
 #' This function sort list returned from countSeqScattered in decreasing or
-#' increasing order, by using as metric the overall counts of matches for each 
-#' sequence. To order the matrix returned from countSeq please use 
+#' increasing order, by using as metric the overall counts of matches for each
+#' sequence. To order the matrix returned from countSeq please use
 #' sortSeqsMatrix
 #'
 #' @usage sortSeqsList(seqsList, decreasing, recursively)
@@ -30,8 +30,8 @@
 #'
 #' #Get the list of matches
 #' listSeqs <- countSeqsScattered(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
-#'   regs, seqs)
-#'   
+#'  regs, seqs)
+#'
 #' #Order list of matches
 #' sortSeqsList(listSeqs, FALSE, TRUE)
 #'
@@ -44,14 +44,14 @@ sortSeqsList <- function(seqsList, decreasing, recursively) {
   if (!is.logical(recursively)) {
     stop("recursively must be logical!")
   }
-  
+
   #Order sequences by number of matches
   seqsList <- seqsList[order(vapply(seqsList, sum, numeric(1)), decreasing = decreasing)]
-  
+
   #If recursively then sort internal vectors of count per region
   if(recursively){
     seqsList <- lapply(seqsList, sort, decreasing)
   }
-  
+
   return(seqsList)
 }
