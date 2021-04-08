@@ -55,6 +55,7 @@ countSeqsScattered <- function(genome, regions, sequences) {
     }
     #Delete regions with no matches
     countMatches <- countMatches[countMatches > 0]
+    return(countMatches)
   })
   
   #Give the sequences' names to the elements of listSeq
@@ -64,6 +65,9 @@ countSeqsScattered <- function(genome, regions, sequences) {
   } else {
     names(listSeq) <- names(sequences)
   }
+  
+  #delete sequences with 0 matches
+  listSeq <- listSeq[vapply(listSeq, length, numeric(1)) != 0]
 
   return(listSeq)
 }
