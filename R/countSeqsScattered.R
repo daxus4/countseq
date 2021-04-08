@@ -15,6 +15,8 @@
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
+#' @seealso \code{\link{countSeqs}}\cr
+#' \code{\link{countSeqs}}\cr
 #' @examples
 #'
 #' #Charge Hsapiens genome
