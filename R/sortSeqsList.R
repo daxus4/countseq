@@ -5,10 +5,10 @@
 #' sequence. To order the matrix returned from countSeq please use 
 #' sortSeqsMatrix
 #'
-#' @usage sortSeqsList(seqsList, decreasing, recursively)
+#' @usage sortSeqsList(seqsList, decreasing, order.regions)
 #' @param seqsList A list returned from countSeqScattered
 #' @param decreasing logical. Should the sort order be increasing or decreasing?
-#' @param recursively logical. Should internal vector of counts per region
+#' @param order.regions logical. Should internal vector of counts per region
 #' be ordered too?
 #' @return input list ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -36,20 +36,20 @@
 #' sortSeqsList(listSeqs, FALSE, TRUE)
 #'
 #' @export
-sortSeqsList <- function(seqsList, decreasing, recursively) {
+sortSeqsList <- function(seqsList, decreasing, order.regions) {
   #Check input
   if (!is.logical(decreasing)) {
     stop("decreasing must be logical!")
   }
-  if (!is.logical(recursively)) {
-    stop("recursively must be logical!")
+  if (!is.logical(order.regions)) {
+    stop("order.regions must be logical!")
   }
   
   #Order sequences by number of matches
   seqsList <- seqsList[order(vapply(seqsList, sum, numeric(1)), decreasing = decreasing)]
   
-  #If recursively then sort internal vectors of count per region
-  if(recursively){
+  #If order.regions then sort internal vectors of count per region
+  if(order.regions){
     seqsList <- lapply(seqsList, sort, decreasing)
   }
   
