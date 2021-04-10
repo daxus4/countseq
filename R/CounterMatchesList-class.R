@@ -35,3 +35,10 @@ setMethod(f = "matches",
             slot(.object, "listSeqs")
           }
 )
+
+setMethod(f = "initialize",
+          signature = "CounterMatchesList",
+          definition = function(.Object, genome, regions, sequences) {
+            listSeqs <- countSeqsScattered(genome, regions, sequences)
+            callNextMethod(.Object, listSeqs = listSeqs)
+          })

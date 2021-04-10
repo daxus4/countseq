@@ -35,3 +35,10 @@ setMethod(f = "matches",
             slot(.object, "matSeqs")
           }
 )
+
+setMethod(f = "initialize",
+          signature = "CounterMatchesMat",
+          definition = function(.Object, genome, regions, sequences) {
+            matSeqs <- countSeqs(genome, regions, sequences)
+            callNextMethod(.Object, matSeqs = matSeqs)
+          })
