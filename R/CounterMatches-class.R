@@ -1,8 +1,8 @@
 #Virtual class of object that can count overall number of sequences that match
 #in some regions
-setClass("CounterMatches", contains = c("VIRTUAL"))
+setClass("CounterMatches", slots = list(arranged = "logical"), contains = c("VIRTUAL"))
 
-#Method that reorder the object by the overall number of sequences that match 
+#Method that reorder the object by the overall number of sequences that match
 #in some regions
 setGeneric("sortSeqs", function(.object, decreasing, order.regions) {
   standardGeneric("sortSeqs")
@@ -21,8 +21,8 @@ setMethod(f = "sortSeqs",
           }
 )
 
-#Accessory method that return the object with the overall number of sequences 
-#that match in some regions 
+#Accessory method that return the object with the overall number of sequences
+#that match in some regions
 setGeneric("matches", function(.object) {
   standardGeneric("matches")
 })
@@ -33,3 +33,16 @@ setMethod(f = "matches",
             return(0)
           }
 )
+
+#Accessory method that return if the object is sorted
+setGeneric("isArranged", function(.object) {
+  standardGeneric("isArranged")
+})
+
+setMethod(f = "isArranged",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            slot(.object, "arranged")
+          }
+)
+

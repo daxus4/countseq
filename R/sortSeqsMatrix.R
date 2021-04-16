@@ -1,8 +1,8 @@
 #' Sort matrix returned from countSeq
 #'
 #' This function sort matrix returned from countSeq in decreasing or
-#' increasing order, by using as metric the overall counts of matches for each 
-#' sequence. To order the list returned from countSeqScattered please use 
+#' increasing order, by using as metric the overall counts of matches for each
+#' sequence. To order the list returned from countSeqScattered please use
 #' sortSeqsMatrix
 #'
 #' @usage sortSeqsMatrix(seqsMat, decreasing, order.regions)
@@ -30,7 +30,7 @@
 #' #Get the matrix of matches
 #' matSeqs <- countSeqs(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
 #'   regs, seqs)
-#'   
+#'
 #' #Order matrix of matches
 #' sortSeqsMatrix(matSeqs, FALSE, TRUE)
 #'
@@ -43,14 +43,14 @@ sortSeqsMatrix <- function(seqsMat, decreasing, order.regions) {
   if (!is.logical(order.regions)) {
     stop("order.regions must be logical!")
   }
-  
+
   #Order sequences (columns) by overall count
   seqsMat <- seqsMat[,order(apply(seqsMat, 2, sum), decreasing = decreasing)]
-  
+
   #If order.regions order the regions (rows)
   if(order.regions) {
     seqsMat <- seqsMat[order(apply(seqsMat, 1, sum), decreasing = decreasing),]
   }
-  
+
   return(seqsMat)
 }
