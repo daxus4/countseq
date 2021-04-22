@@ -12,11 +12,11 @@ setMethod(f = "sortSeqs",
           definition = function(.object, decreasing, order.regions) {
             #Call inherited method to check the input parameters
             callNextMethod()
-            
+
             #Order sequences (columns) by overall count
             sortedMat <- .object@matSeqs[,order(
               apply(.object@matSeqs, 2, sum), decreasing = decreasing)]
-            
+
             #If order.regions order the regions (rows)
             if(order.regions) {
               sortedMat <- sortedMat[order(

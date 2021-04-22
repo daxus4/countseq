@@ -45,3 +45,7 @@ setMethod(f = "isArranged",
             slot(.object, "arranged")
           }
 )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0130ebae940cbc1b2deace123a157476e2d89f1c
