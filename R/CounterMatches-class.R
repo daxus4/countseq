@@ -1,6 +1,6 @@
 #Virtual class of object that can count overall number of sequences that match
 #in some regions
-setClass("CounterMatches", slots = list(arranged = "logical"), contains = c("VIRTUAL"))
+setClass("CounterMatches", slots = list(arranged = "logical", reduced = "logical"), contains = c("VIRTUAL"))
 
 #Method that reorder the object by the overall number of sequences that match
 #in some regions
@@ -43,5 +43,43 @@ setMethod(f = "isArranged",
           signature = "CounterMatches",
           definition = function(.object) {
             slot(.object, "arranged")
+          }
+)
+
+#Create copy of this object with the other representation
+setGeneric("convertType", function(.object) {
+  standardGeneric("convertType")
+})
+
+setMethod(f = "convertType",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            NULL
+          }
+)
+
+#Accessory method that return if the object is reduced
+setGeneric("isReduced", function(.object) {
+  standardGeneric("isReduced")
+})
+
+setMethod(f = "isReduced",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            slot(.object, "reduced")
+          }
+)
+
+#Accessory method that reduce the object
+setGeneric("reduce", function(.object) {
+  standardGeneric("reduce")
+})
+
+setMethod(f = "reduce",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            if(slot(.object, "reduced"))
+              print("Già ridotto")
+            
           }
 )

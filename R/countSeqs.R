@@ -10,6 +10,8 @@
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
 #' within the regions
+#' @param reduced boolean. It specify if the colouns and rows full of zeros have
+#' to be deleted
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -36,7 +38,7 @@
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
 #' @export
-countSeqs <- function(genome, regions, sequences) {
+countSeqs <- function(genome, regions, sequences, reduced) {
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)
@@ -58,6 +60,12 @@ countSeqs <- function(genome, regions, sequences) {
   } else {
     rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
                            GenomicRanges::start(regions), sep = ":")
+  }
+  
+  if(reduced) {
+    #Delete rows and coloums with all zeros
+    mat <- mat[rowSums(mat) > 0,]
+    mat <- mat[, colSums(mat) > 0]
   }
   return(mat)
 }

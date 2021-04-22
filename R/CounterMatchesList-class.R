@@ -36,6 +36,15 @@ setMethod(f = "matches",
           }
 )
 
+#Create copy of this object in a CounterMatchesMat
+setMethod(f = "convertType",
+          signature = "CounterMatchesList",
+          definition = function(.object) {
+            
+          }
+)
+
+
 getCounterMatchesList <- function(genome, regions, sequences, arranged) {
   listSeqs <- countSeqsScattered(genome, regions, sequences)
   if(arranged)

@@ -35,9 +35,40 @@ setMethod(f = "matches",
           }
 )
 
-getCounterMatchesMat <- function(genome, regions, sequences, arranged) {
-  matSeqs <- countSeqs(genome, regions, sequences)
+#Create copy of this object in a CounterMatchesList
+setMethod(f = "convertType",
+          signature = "CounterMatchesMat",
+          definition = function(.object) {
+            listSeqs <- lapply(seq(1,ncol(matches(.object))), function(col) {
+              #Get a vector where there is the number of matches per regions for this sequence
+              countsForRegs <- matches(.object)[,col]
+              names(countsForRegs) <- rownames(matches(.object))
+              
+              #Delete regions with zero matches
+              countsForRegs <- countsForRegs[countsForRegs > 0]
+            })
+            
+            names(listSeqs) <- colnames(matches(.object))
+            
+            #Delete sequences with 0 matches
+            listSeqs <- listSeqs[vapply(listSeq, length, numeric(1)) != 0]
+            
+            return(new("CounterMatchesList", arranged = isArranged(.object), listSeqs = listSeqs))
+          }
+)
+
+setMethod(f = "reduce",
+          signature = "CounterMatchesMat",
+          definition = function(.object) {
+            callNextMethod()
+            
+            
+          }
+)
+
+getCounterMatchesMat <- function(genome, regions, sequences, arranged, reduced) {
+  matSeqs <- countSeqs(genome, regions, sequences, reduced)
   if(arranged)
     matSeqs <- sortSeqsMatrix(matSeqs, TRUE, FALSE)
-  return(new("CounterMatchesMat", arranged = arranged, matSeqs = matSeqs))
+  return(new("CounterMatchesMat", arranged = arranged, matSeqs = matSeqs, reduced = reduced))
 }
