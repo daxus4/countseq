@@ -13,21 +13,16 @@ setMethod(f = "sortSeqs",
           definition = function(.object, decreasing, order.regions) {
             #Call inherited method to check the input parameters
             callNextMethod()
-
+            
             #Order sequences by number of matches
             sortedList <- matches(.object)[order(vapply(matches(.object), sum,
-<<<<<<< HEAD
                                                         numeric(1)), decreasing = decreasing)]
             
-=======
-                                        numeric(1)), decreasing = decreasing)]
-
->>>>>>> 0130ebae940cbc1b2deace123a157476e2d89f1c
             #If order.regions then sort internal vectors of count per region
             if(order.regions){
               sortedList <- lapply(sortedList, sort, decreasing)
             }
-
+            
             return(sortedList)
           }
 )
