@@ -1,12 +1,12 @@
-#Class that inherited from CounterMatches, that can count overall number of 
-#sequences that match in some regions, and put the result in a list. It's the 
+#Class that inherited from CounterMatches, that can count overall number of
+#sequences that match in some regions, and put the result in a list. It's the
 #best choice when you think that there are few sequences that match in many
 #regions; otherwise you an use countSeqs.
 CounterMatchesList <- setClass("CounterMatchesList",
-                              slots = list(listSeqs = "list"),
-                              contains = c("CounterMatches"))
+                               slots = list(listSeqs = "list"),
+                               contains = c("CounterMatches"))
 
-#Method that reorder the object by the overall number of sequences that match 
+#Method that reorder the object by the overall number of sequences that match
 #in some regions
 setMethod(f = "sortSeqs",
           signature = "CounterMatchesList",
@@ -16,7 +16,7 @@ setMethod(f = "sortSeqs",
             
             #Order sequences by number of matches
             sortedList <- matches(.object)[order(vapply(matches(.object), sum,
-                                        numeric(1)), decreasing = decreasing)]
+                                                        numeric(1)), decreasing = decreasing)]
             
             #If order.regions then sort internal vectors of count per region
             if(order.regions){
@@ -27,8 +27,8 @@ setMethod(f = "sortSeqs",
           }
 )
 
-#Accessory method that return the list with the overall number of sequences 
-#that match in some regions 
+#Accessory method that return the list with the overall number of sequences
+#that match in some regions
 setMethod(f = "matches",
           signature = "CounterMatchesList",
           definition = function(.object) {
@@ -36,9 +36,9 @@ setMethod(f = "matches",
           }
 )
 
-setMethod(f = "initialize",
-          signature = "CounterMatchesList",
-          definition = function(.Object, genome, regions, sequences) {
-            listSeqs <- countSeqsScattered(genome, regions, sequences)
-            callNextMethod(.Object, listSeqs = listSeqs)
-          })
+getCounterMatchesList <- function(genome, regions, sequences, arranged) {
+  listSeqs <- countSeqsScattered(genome, regions, sequences)
+  if(arranged)
+    listSeqs <- sortSeqsList(listSeqs, TRUE, FALSE)
+  return(new("CounterMatchesList", arranged = arranged, listSeqs = listSeqs))
+}

@@ -1,11 +1,11 @@
-#Class that inherited from CounterMatches, that can count overall number of 
+#Class that inherited from CounterMatches, that can count overall number of
 #sequences that match in some regions, and put the result in a matrix where the
 #row are the regions and the columns are the sequences.
 CounterMatchesMat <- setClass("CounterMatchesMat",
                               slots = list(matSeqs = "matrix"),
                               contains = c("CounterMatches"))
-         
-#Method that reorder the object by the overall number of sequences that match 
+
+#Method that reorder the object by the overall number of sequences that match
 #in some regions
 setMethod(f = "sortSeqs",
           signature = "CounterMatchesMat",
@@ -22,13 +22,12 @@ setMethod(f = "sortSeqs",
               sortedMat <- sortedMat[order(
                 apply(sortedMat, 1, sum), decreasing = decreasing),]
             }
-            
             return(sortedMat)
           }
 )
 
-#Accessory method that return the matrix with the overall number of sequences 
-#that match in some regions 
+#Accessory method that return the matrix with the overall number of sequences
+#that match in some regions
 setMethod(f = "matches",
           signature = "CounterMatchesMat",
           definition = function(.object) {
@@ -36,9 +35,9 @@ setMethod(f = "matches",
           }
 )
 
-setMethod(f = "initialize",
-          signature = "CounterMatchesMat",
-          definition = function(.Object, genome, regions, sequences) {
-            matSeqs <- countSeqs(genome, regions, sequences)
-            callNextMethod(.Object, matSeqs = matSeqs)
-          })
+getCounterMatchesMat <- function(genome, regions, sequences, arranged) {
+  matSeqs <- countSeqs(genome, regions, sequences)
+  if(arranged)
+    matSeqs <- sortSeqsMatrix(matSeqs, TRUE, FALSE)
+  return(new("CounterMatchesMat", arranged = arranged, matSeqs = matSeqs))
+}
