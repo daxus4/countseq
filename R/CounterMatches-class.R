@@ -78,8 +78,30 @@ setGeneric("reduce", function(.object) {
 setMethod(f = "reduce",
           signature = "CounterMatches",
           definition = function(.object) {
-            if(slot(.object, "reduced"))
-              print("Già ridotto")
-            
+            NULL
+          }
+)
+
+#Accessory method that return sequences' names
+setGeneric("seqNames", function(.object) {
+  standardGeneric("seqNames")
+})
+
+setMethod(f = "seqNames",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            NULL
+          }
+)
+
+#Accessory method that return regions' names
+setGeneric("regNames", function(.object) {
+  standardGeneric("regNames")
+})
+
+setMethod(f = "regNames",
+          signature = "CounterMatches",
+          definition = function(.object) {
+            NULL
           }
 )

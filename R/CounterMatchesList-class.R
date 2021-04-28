@@ -22,8 +22,8 @@ setMethod(f = "sortSeqs",
             if(order.regions){
               sortedList <- lapply(sortedList, sort, decreasing)
             }
-            
-            return(sortedList)
+            return(new("CounterMatchesList", arranged = arranged, 
+                       listSeqs = sortedList, reduced = TRUE))
           }
 )
 
@@ -40,14 +40,48 @@ setMethod(f = "matches",
 setMethod(f = "convertType",
           signature = "CounterMatchesList",
           definition = function(.object) {
+            namesRegs <- regNames(.object)
+            namesSeqs <- seqNames(.object)
+            
+            matSeqs <- matrix(nrow = length(namesRegs), ncol = length(namesSeqs),
+              dimnames = list(namesRegs, namesSeqs))
+            
+            
             
           }
 )
 
+#create a reduced copy of the object ( a CounterMatchesList is always reduced)
+setMethod(f = "reduce",
+          signature = "CounterMatchesList",
+          definition = function(.object) {
+            return(new("CounterMatchesList", arranged = isArranged(.object), 
+                       listSeqs = matches(.object), reduced = reduced))
+          }
+)
+
+#Accessory method that return sequences' names
+setMethod(f = "seqNames",
+          signature = "CounterMatchesList",
+          definition = function(.object) {
+            return(names(matches(.object)))
+          }
+)
+
+#Accessory method that return regions' names
+setMethod(f = "regNames",
+          signature = "CounterMatchesList",
+          definition = function(.object) {
+            listReg <- lapply(matches(.object), names)
+            vectReg <-unlist(listReg)
+            return(unique(unlist(listReg)))
+          }
+)
 
 getCounterMatchesList <- function(genome, regions, sequences, arranged) {
   listSeqs <- countSeqsScattered(genome, regions, sequences)
   if(arranged)
     listSeqs <- sortSeqsList(listSeqs, TRUE, FALSE)
-  return(new("CounterMatchesList", arranged = arranged, listSeqs = listSeqs))
+  return(new("CounterMatchesList", arranged = arranged, listSeqs = listSeqs,
+             reduced = TRUE))
 }

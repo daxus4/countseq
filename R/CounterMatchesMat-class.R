@@ -57,12 +57,35 @@ setMethod(f = "convertType",
           }
 )
 
+#create a reduced copy of the object
 setMethod(f = "reduce",
           signature = "CounterMatchesMat",
           definition = function(.object) {
-            callNextMethod()
+            #get rows with all 0
+            row_sub = apply(matches(.object), 1, function(row) all(row == 0))
+            #get columns with all 0
+            col_sub = apply(matches(.object), 2, function(col) all(col == 0))
             
+            return(new("CounterMatchesMat", arranged = isArranged(.object), 
+                       matSeqs = matches(.object)[row_sub, col_sub], 
+                       reduced = reduced))
             
+          }
+)
+
+#Accessory method that return sequences' names
+setMethod(f = "seqNames",
+          signature = "CounterMatchesMat",
+          definition = function(.object) {
+            return(colnames(matches(.object)))
+          }
+)
+
+#Accessory method that return regions' names
+setMethod(f = "regNames",
+          signature = "CounterMatchesMat",
+          definition = function(.object) {
+            return(rownames(matches(.object)))
           }
 )
 
