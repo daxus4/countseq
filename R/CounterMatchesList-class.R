@@ -36,21 +36,6 @@ setMethod(f = "matches",
           }
 )
 
-#Create copy of this object in a CounterMatchesMat
-setMethod(f = "convertType",
-          signature = "CounterMatchesList",
-          definition = function(.object) {
-            namesRegs <- regNames(.object)
-            namesSeqs <- seqNames(.object)
-            
-            matSeqs <- matrix(nrow = length(namesRegs), ncol = length(namesSeqs),
-              dimnames = list(namesRegs, namesSeqs))
-            
-            
-            
-          }
-)
-
 #create a reduced copy of the object ( a CounterMatchesList is always reduced)
 setMethod(f = "reduce",
           signature = "CounterMatchesList",

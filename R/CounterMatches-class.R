@@ -46,18 +46,6 @@ setMethod(f = "isArranged",
           }
 )
 
-#Create copy of this object with the other representation
-setGeneric("convertType", function(.object) {
-  standardGeneric("convertType")
-})
-
-setMethod(f = "convertType",
-          signature = "CounterMatches",
-          definition = function(.object) {
-            NULL
-          }
-)
-
 #Accessory method that return if the object is reduced
 setGeneric("isReduced", function(.object) {
   standardGeneric("isReduced")
