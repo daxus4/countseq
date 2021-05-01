@@ -1,6 +1,9 @@
 #Class that inherited from CounterMatches, that can count overall number of
 #sequences that match in some regions, and put the result in a matrix where the
-#row are the regions and the columns are the sequences.
+#row are the regions and the columns are the sequences. It's the best choice 
+#when you want to do operation in faster time, but consuming more memory if the
+#matrix is scattered. If you want to save memory when matrix is scattered use 
+#CounterMatchesList
 CounterMatchesMat <- setClass("CounterMatchesMat",
                               slots = list(matSeqs = "matrix"),
                               contains = c("CounterMatches"))
