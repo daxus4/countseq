@@ -1,7 +1,7 @@
 #Class that inherited from CounterMatches, that can count overall number of
 #sequences that match in some regions, and put the result in a list. It's the
 #best choice when you think that there are few sequences that match in many
-#regions; otherwise you an use countSeqs.
+#regions; otherwise you an use CounterMatchesMat.
 CounterMatchesList <- setClass("CounterMatchesList",
                                slots = list(listSeqs = "list"),
                                contains = c("CounterMatches"))

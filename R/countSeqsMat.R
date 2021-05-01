@@ -3,22 +3,21 @@
 #' This function returns an overall count for each search sequence within the
 #' interesting genomic regions. Also overlapping sequences. It's the best
 #' choice when you think that there are many sequences that match in many
-#' regions; otherwise it's best to use countSeqsScattered for less memory usage.
+#' regions; otherwise it's best to use countSeqsList for less memory usage.
 #'
-#' @usage countSeqs(genome, regions, sequences)
+#' @usage countSeqsMat(genome, regions, sequences)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
 #' within the regions
-#' @param reduced boolean. It specify if the colouns and rows full of zeros have
+#' @param reduced boolean. It specify if the columns and rows full of zeros have
 #' to be deleted
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
-#' @seealso \code{\link{countSeqsScattered}}\cr
-#' \code{\link{countSeqsScattered}}\cr
+#' @seealso \code{\link{countSeqsList}}\cr
 #' @examples
 #'
 #' #Charge Hsapiens genome
@@ -32,13 +31,13 @@
 #' library(Biostrings)
 #' seqs <- DNAStringSet(c("AA", "AT", "GG"))
 #'
-#' countSeqs(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+#' countSeqsMat(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 #'
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
 #' @export
-countSeqs <- function(genome, regions, sequences, reduced) {
+countSeqsMat <- function(genome, regions, sequences, reduced) {
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)
