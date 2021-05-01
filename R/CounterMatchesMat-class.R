@@ -68,7 +68,7 @@ setMethod(f = "regNames",
 )
 
 getCounterMatchesMat <- function(genome, regions, sequences, arranged, reduced) {
-  matSeqs <- countSeqs(genome, regions, sequences, reduced)
+  matSeqs <- countSeqsMat(genome, regions, sequences, reduced)
   if(arranged)
     matSeqs <- sortSeqsMatrix(matSeqs, TRUE, FALSE)
   return(new("CounterMatchesMat", arranged = arranged, matSeqs = matSeqs, reduced = reduced))

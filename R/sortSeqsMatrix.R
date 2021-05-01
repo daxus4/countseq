@@ -1,18 +1,18 @@
-#' Sort matrix returned from countSeq
+#' Sort matrix returned from countSeqMat
 #'
-#' This function sort matrix returned from countSeq in decreasing or
+#' This function sort matrix returned from countSeqMat in decreasing or
 #' increasing order, by using as metric the overall counts of matches for each
-#' sequence. To order the list returned from countSeqScattered please use
-#' sortSeqsMatrix
+#' sequence. To order the list returned from countSeqList please use
+#' sortSeqsList
 #'
-#' @usage sortSeqsMatrix(seqsMat, decreasing, order.regions)
-#' @param seqsMat A matrix returned from countSeq
+#' @usage sortSeqsMat(seqsMat, decreasing, order.regions)
+#' @param seqsMat A matrix returned from countSeqMat
 #' @param decreasing logical. Should the sort order be increasing or decreasing?
 #' @param order.regions logical. Should regions be ordered too?
 #' @return input matrix ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
-#' @seealso \code{\link{countSeq}}\cr
+#' @seealso \code{\link{countSeqMat}}\cr
 #' \code{\link{sortSeqsList}}\cr
 #' @examples
 #'
@@ -28,14 +28,14 @@
 #' seqs <- DNAStringSet(c("AA", "AT", "GG"))
 #'
 #' #Get the matrix of matches
-#' matSeqs <- countSeqs(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
+#' matSeqs <- countSeqsMat(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
 #'   regs, seqs)
 #'
 #' #Order matrix of matches
-#' sortSeqsMatrix(matSeqs, FALSE, TRUE)
+#' sortSeqsMat(matSeqs, FALSE, TRUE)
 #'
 #' @export
-sortSeqsMatrix <- function(seqsMat, decreasing, order.regions) {
+sortSeqsMat <- function(seqsMat, decreasing, order.regions) {
   #Check input
   if (!is.logical(decreasing)) {
     stop("decreasing must be logical!")

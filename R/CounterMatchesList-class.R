@@ -64,7 +64,7 @@ setMethod(f = "regNames",
 )
 
 getCounterMatchesList <- function(genome, regions, sequences, arranged) {
-  listSeqs <- countSeqsScattered(genome, regions, sequences)
+  listSeqs <- countSeqsList(genome, regions, sequences)
   if(arranged)
     listSeqs <- sortSeqsList(listSeqs, TRUE, FALSE)
   return(new("CounterMatchesList", arranged = arranged, listSeqs = listSeqs,
