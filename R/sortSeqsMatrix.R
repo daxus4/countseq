@@ -1,19 +1,17 @@
-#' Sort matrix returned from countSeqMat
+#' Sort matrix returned from countSeqMatrix
 #'
-#' This function sort matrix returned from countSeqMat in decreasing or
+#' This function sort matrix returned from countSeqMatrix in decreasing or
 #' increasing order, by using as metric the overall counts of matches for each
-#' sequence. To order the list returned from countSeqList please use
-#' sortSeqsList
+#' sequence.
 #'
-#' @usage sortSeqsMat(seqsMat, decreasing, order.regions)
-#' @param seqsMat A matrix returned from countSeqMat
+#' @usage sortSeqsMatrix(seqsMat, decreasing, order.regions)
+#' @param seqsMat A matrix returned from countSeqMatrix
 #' @param decreasing logical. Should the sort order be increasing or decreasing?
 #' @param order.regions logical. Should regions be ordered too?
 #' @return input matrix ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
-#' @seealso \code{\link{countSeqMat}}\cr
-#' \code{\link{sortSeqsList}}\cr
+#' @seealso \code{\link{countSeqMatrix}}\cr
 #' @examples
 #'
 #' #Charge Hsapiens genome
@@ -32,10 +30,10 @@
 #'   regs, seqs)
 #'
 #' #Order matrix of matches
-#' sortSeqsMat(matSeqs, FALSE, TRUE)
+#' sortSeqsMatrix(matSeqs, FALSE, TRUE)
 #'
 #' @export
-sortSeqsMat <- function(seqsMat, decreasing, order.regions) {
+sortSeqsMatrix <- function(seqsMat, decreasing, order.regions) {
   #Check input
   if (!is.logical(decreasing)) {
     stop("decreasing must be logical!")
