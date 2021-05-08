@@ -33,7 +33,7 @@
 #' sortSeqsMatrix(matSeqs, FALSE, TRUE)
 #'
 #' @export
-sortSeqsMatrix <- function(seqsMat, decreasing, order.regions) {
+sortSeqsMatrix <- function(seqsMat, decreasing, order.regions = FALSE) {
   #Check input
   if (!is.logical(decreasing)) {
     stop("decreasing must be logical!")
