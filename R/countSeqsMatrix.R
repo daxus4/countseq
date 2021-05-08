@@ -4,7 +4,7 @@
 #' interesting genomic regions. In the count are counted also overlapping 
 #' sequences.
 #'
-#' @usage countSeqsMatrixrix(genome, regions, sequences, reduced = TRUE)
+#' @usage countSeqsMatrix(genome, regions, sequences, reduced = TRUE)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
