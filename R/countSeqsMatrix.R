@@ -1,11 +1,10 @@
 #' Count reads mapped on multiple regions of a genome
 #'
 #' This function returns an overall count for each search sequence within the
-#' interesting genomic regions. Also overlapping sequences. It's the best
-#' choice when you think that there are many sequences that match in many
-#' regions; otherwise it's best to use countSeqsList for less memory usage.
+#' interesting genomic regions. In the count are counted also overlapping 
+#' sequences.
 #'
-#' @usage countSeqsMat(genome, regions, sequences)
+#' @usage countSeqsMatrixrix(genome, regions, sequences, reduced = TRUE)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
@@ -17,7 +16,6 @@
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
-#' @seealso \code{\link{countSeqsList}}\cr
 #' @examples
 #'
 #' #Charge Hsapiens genome
@@ -31,13 +29,13 @@
 #' library(Biostrings)
 #' seqs <- DNAStringSet(c("AA", "AT", "GG"))
 #'
-#' countSeqsMat(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+#' countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 #'
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
 #' @export
-countSeqsMat <- function(genome, regions, sequences, reduced) {
+countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)
