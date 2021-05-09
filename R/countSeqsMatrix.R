@@ -1,10 +1,10 @@
 #' Count reads mapped on multiple regions of a genome
 #'
 #' This function returns an overall count for each search sequence within the
-#' interesting genomic regions. In the count are counted also overlapping 
+#' interesting genomic regions. In the count are counted also overlapping
 #' sequences.
 #'
-#' @usage countSeqsMatrix(genome, regions, sequences, reduced = TRUE)
+#' @usage countSeqsMatrix(genome, regions, sequences, reduced = FALSE)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
 #' @param sequences A DNAStringSet which contains the sequences to be matched
@@ -58,7 +58,7 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
     rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
                            GenomicRanges::start(regions), sep = ":")
   }
-  
+
   if(reduced) {
     #Delete rows and coloums with all zeros
     mat <- mat[rowSums(mat) > 0,]

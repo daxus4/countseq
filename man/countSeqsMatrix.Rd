@@ -4,7 +4,7 @@
 \alias{countSeqsMatrix}
 \title{Count reads mapped on multiple regions of a genome}
 \usage{
-countSeqsMatrixrix(genome, regions, sequences, reduced = TRUE)
+countSeqsMatrix(genome, regions, sequences, reduced = TRUE)
 }
 \arguments{
 \item{genome}{A genome of BSgenome class}
