@@ -51,13 +51,8 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
   }
 
   #Give the regions' names to the rows
-  if(is.null(GenomicRanges::seqnames(regions))) {
-    rownames(mat) <- lapply(seq(1,length(regions)),
-                          function(i) paste0("reg",i))
-  } else {
     rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
                            GenomicRanges::start(regions), sep = ":")
-  }
 
   if(reduced) {
     #Delete rows and coloums with all zeros
