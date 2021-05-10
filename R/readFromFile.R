@@ -11,13 +11,8 @@
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @examples
 #'
-#' #Get a matrix of integers with rownames and colnames
-#' mat <- matrix(data = c(1,2,3,4), ncol = 2)
-#' rownames(mat) <- c('1','2')
-#' colnames(mat) <- c('1','2')
-#' 
-#' #Write mat to a file
-#' writeToFile(mat, "matrix.txt")
+#' #Get a matrix of integers with rownames and colnames from matrix.txt
+#' mat <- readFromFile("matrix.txt")
 #'
 #' @export
 readFromFile <- function(filename){
