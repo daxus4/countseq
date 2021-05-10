@@ -7,7 +7,7 @@
 #' @usage writeToFile(matrix, filename)
 #' @param matrix A matrix returned from \code{\link{countSeqsMatrix}} or any 
 #' matrix which contains only integers and with rownames and colnames
-#' @param filename string. Name of the file where the matrix is saved
+#' @param filename string. Name of the file where the matrix will be saved
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
 #' @examples
