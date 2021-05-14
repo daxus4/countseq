@@ -20,12 +20,11 @@ readFromFile <- function(filename){
     stop("filename must be a character")
   }
   mat <- utils::read.table(filename, header = TRUE, sep = " ", row.names = 1)
-  if(!is.numeric(mat) | any(mat%%1) != 0) {
+
+  if(!all(apply(mat, 1 , function(row) {all(grepl('^-?[0-9.]+$', row))})))
     stop("This file doesn't contain a matrix of integers")
-  }
-  if(length(rownames(mat)) != nrow(mat) |
-     length(colnames(mat)) != ncol(mat)){
-    stop("This file doesn't contain a matrix with rownames and colnames")
-  }
-  return(mat)
+  if(any(mat%%1 != 0))
+    stop("This file doesn't contain a matrix of integers")
+  
+  return(as.matrix(mat))
 }

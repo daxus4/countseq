@@ -23,9 +23,13 @@
 #' @importFrom utils write.table
 #' @export
 writeToFile <- function(matrix, filename){
-  if(!is.numeric(matrix) | any(matrix%%1) != 0) {
+  if(!is.matrix(matrix))
     stop("This function require that matrix is a matrix of integers")
-  }
+  if(!all(apply(matrix, 1 , function(row) {all(is.numeric(row))})))
+    stop("This function require that matrix is a matrix of integers")
+  if(any(matrix%%1 != 0))
+    stop("This function require that matrix is a matrix of integers")
+  
   if(length(rownames(matrix)) != nrow(matrix) |
      length(colnames(matrix)) != ncol(matrix)){
     stop("Every row/column must have a name")
