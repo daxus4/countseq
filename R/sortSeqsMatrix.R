@@ -10,7 +10,8 @@
 #' @param order.regions logical. Should regions be ordered too?
 #' @return input matrix ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
-#' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
+#' Raffaelli\cr E-Mail:
+#' <davide2.raffaelli@@mail.polimi.it>
 #' @seealso \code{\link{countSeqsMatrix}}\cr
 #' @examples
 #'
@@ -27,7 +28,7 @@
 #'
 #' #Get the matrix of matches
 #' matSeqs <- countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
-#'   regs, seqs)
+#'                             regs, seqs)
 #'
 #' #Order matrix of matches
 #' sortSeqsMatrix(matSeqs, FALSE, TRUE)
@@ -37,21 +38,22 @@
 #' @importFrom GenomicRanges seqnames start
 #' @export
 sortSeqsMatrix <- function(seqsMat, decreasing, order.regions = FALSE) {
-  #Check input
-  if (!is.logical(decreasing)) {
-    stop("decreasing must be logical!")
-  }
-  if (!is.logical(order.regions)) {
-    stop("order.regions must be logical!")
-  }
+    #Check input
+    if (!is.logical(decreasing)) {
+        stop("decreasing must be logical!")
+    }
+    if (!is.logical(order.regions)) {
+        stop("order.regions must be logical!")
+    }
 
-  #Order sequences (columns) by overall count
-  seqsMat <- seqsMat[,order(apply(seqsMat, 2, sum), decreasing = decreasing)]
+    #Order sequences (columns) by overall count
+    seqsMat <- seqsMat[,order(apply(seqsMat, 2, sum), decreasing = decreasing)]
 
-  #If order.regions order the regions (rows)
-  if(order.regions) {
-    seqsMat <- seqsMat[order(apply(seqsMat, 1, sum), decreasing = decreasing),]
-  }
+    #If order.regions order the regions (rows)
+    if(order.regions) {
+        seqsMat <-
+            seqsMat[order(apply(seqsMat, 1, sum), decreasing = decreasing),]
+    }
 
-  return(seqsMat)
+    return(seqsMat)
 }

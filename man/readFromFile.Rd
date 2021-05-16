@@ -21,8 +21,10 @@ contains only integers and with rownames and colnames
 
 #Get a matrix of integers with rownames and colnames from matrix.txt
 readFromFile(system.file("extdata", "matrix.txt", package = "countseq"))
+
 }
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
-Raffaelli\cr E-Mail: \href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
+Raffaelli\cr E-Mail:
+\href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
 }

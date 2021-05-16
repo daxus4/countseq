@@ -14,7 +14,8 @@
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
-#' Raffaelli\cr E-Mail: <davide2.raffaelli@@mail.polimi.it>
+#' Raffaelli\cr E-Mail:
+#' <davide2.raffaelli@@mail.polimi.it>
 #' @references \url{https://en.wikipedia.org/wiki/Genome}\cr
 #' @examples
 #'
@@ -36,28 +37,28 @@
 #' @importFrom GenomicRanges seqnames start
 #' @export
 countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
-  #Extract sequence from genome's regions and calculate matrix with return
-  #values
-  dnaSet <- BSgenome::getSeq(genome, regions)
-  mat <- vapply(sequences, BSgenome::vcountPattern, numeric(length(regions)),
-                dnaSet)
+    #Extract sequence from genome's regions and calculate matrix with return
+    #values
+    dnaSet <- BSgenome::getSeq(genome, regions)
+    mat <- vapply(sequences, BSgenome::vcountPattern, numeric(length(regions)),
+                    dnaSet)
 
-  #Give the sequences' names to the columns
-  if(is.null(names(sequences))) {
-    colnames(mat) <- lapply(seq(1,length(sequences)),
-                            function(i) paste0("seq",i))
-  } else {
-    colnames(mat) <- names(sequences)
-  }
+    #Give the sequences' names to the columns
+    if(is.null(names(sequences))) {
+        colnames(mat) <- lapply(seq(1,length(sequences)),
+                                function(i) paste0("seq",i))
+    } else {
+        colnames(mat) <- names(sequences)
+    }
 
-  #Give the regions' names to the rows
+    #Give the regions' names to the rows
     rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
-                           GenomicRanges::start(regions), sep = ":")
+                            GenomicRanges::start(regions), sep = ":")
 
-  if(reduced) {
-    #Delete rows and coloums with all zeros
-    mat <- mat[rowSums(mat) > 0,]
-    mat <- mat[, colSums(mat) > 0]
-  }
-  return(mat)
+    if(reduced) {
+        #Delete rows and coloums with all zeros
+        mat <- mat[rowSums(mat) > 0,]
+        mat <- mat[, colSums(mat) > 0]
+    }
+    return(mat)
 }

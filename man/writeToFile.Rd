@@ -12,6 +12,9 @@ matrix which contains only integers and with rownames and colnames}
 
 \item{filename}{string. Name of the file where the matrix will be saved}
 }
+\value{
+TRUE if the file is created, FALSE otherwise
+}
 \description{
 This function write to a file a matrix obtained from
 \code{\link{countSeqsMatrix}} or any other matrix which contains only
@@ -30,5 +33,6 @@ writeToFile(mat, "matrix.txt")
 }
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
-Raffaelli\cr E-Mail: \href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
+Raffaelli\cr E-Mail:
+\href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
 }

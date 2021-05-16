@@ -18,7 +18,8 @@
 #' @author Davide Raffaelli \[aut, cre]\cr
 #' Politecnico di Milano\cr
 #' Maintainer: Davide Raffaelli\cr
-#' E-Mail: <davide2.raffaelli@@mailpolimi.it>
+#' E-Mail: \cr
+#' <davide2.raffaelli@@mailpolimi.it>
 #' @references \url{https://github.com/daxus4/countseq}\cr
 #' Raffaelli (2021) Some paper. Journal, volume, issue.\cr
 NULL

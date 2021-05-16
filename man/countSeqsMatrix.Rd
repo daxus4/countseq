@@ -47,5 +47,6 @@ countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 }
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
-Raffaelli\cr E-Mail: \href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
+Raffaelli\cr E-Mail:
+\href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
 }
