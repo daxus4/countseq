@@ -57,27 +57,46 @@ test_that("Test input parameters on writeToFile", {
 
 test_that("Test input parameters on readFromFile", {
   #Create arguments for readFromFile
-  filename <- "m.txt"
+  filename <- 7
   
   #check if get error when filename isn't a string
-  expect_error(writeToFile(mat_check, 4),
+  expect_error(readFromFile(filename),
                "filename must be a character")
 })
 
 test_that("Test error of matrix contained in file on readFromFile", {
-  #Create arguments for readFromFile
-  filename <- "m.txt"
-  
   #Create arguments for writeToFile and readFromFile
   filename <- "m.txt"
-  mat_check <- matrix(data = c(0,3,2,3,16,7), nrow = 2)
+  mat_check <- matrix(data = c("a","9","6","5","4","4"), nrow = 2)
   rownames(mat_check) <- c("chr1:1000001", "chr1:1000101")
   colnames(mat_check) <- c("seq1", "seq2", "seq3")
   
   #Write matrix into a file
-  writeToFile(mat_check, filename)
+  utils::write.table(mat_check, file = filename, row.names = TRUE,
+                     col.names = TRUE)
   
   #Check if file exists
   expect_true(file.exists(filename))
+  
+  #Check if get error when matrix in file contains strings
+  expect_error(readFromFile(filename),
+               "This file doesn't contain a matrix of integers")
+  
+  #Create matrix with not all integers
+  mat_check <- matrix(data = c(0.8,3,2,3,4,4), nrow = 2)
+  
+  #Write matrix into a file
+  utils::write.table(mat_check, file = filename, row.names = TRUE,
+                     col.names = TRUE)
+  
+  #Check if file exists
+  expect_true(file.exists(filename))
+  
+  #Check if get error when matrix in file contains strings
+  expect_error(readFromFile(filename),
+               "This file doesn't contain a matrix of integers")
+  
+  #Delete file
+  file.remove(filename)
   
 })
