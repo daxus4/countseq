@@ -11,6 +11,8 @@
 #' within the regions
 #' @param reduced boolean. It specify if the columns and rows full of zeros have
 #' to be deleted
+#' @param ordered boolean. It specify if the sequences should be ordered in
+#' descreasing order. If you want a different order please use sortSeqsMatrix
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -35,7 +37,23 @@
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
 #' @export
-countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
+countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
+                            ordered = FALSE) {
+  if(!inherits(genome, "BSgenome")){
+    stop("genome must inherits fom BSgenome")
+  }
+  if(!inherits(regions, "GRanges")){
+    stop("regions must inherits fom GRanges")
+  }
+  if(!inherits(sequences, "DNAStringSet")){
+    #If sequences is a vector of strings convert it in a DNAStringSet
+    if(is.character(sequences)){
+      sequences <- DNAStringSet(sequences)
+    } else {
+      stop("sequences must inherits fom DNAStringSet")
+    }
+  }
+  
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)
@@ -58,6 +76,10 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE) {
     #Delete rows and coloums with all zeros
     mat <- mat[rowSums(mat) > 0,]
     mat <- mat[, colSums(mat) > 0]
+  }
+  
+  if(ordered) {
+    mat <- sortSeqsMatrix(mat, TRUE)
   }
   return(mat)
 }

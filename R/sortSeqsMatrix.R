@@ -1,4 +1,4 @@
-#' Sort matrix returned from countSeqsMatrix
+#' Sort matrix columns (sequences) of matrix returned from countSeqsMatrix
 #'
 #' This function sort matrix returned from countSeqsMatrix in decreasing or
 #' increasing order, by using as metric the overall counts of matches for each
@@ -6,7 +6,7 @@
 #'
 #' @usage sortSeqsMatrix(seqsMat, decreasing, order.regions = FALSE)
 #' @param seqsMat A matrix returned from countSeqsMatrix
-#' @param decreasing logical. Should the sort order be increasing or decreasing?
+#' @param decreasing logical. Should the sort order be decreasing?
 #' @param order.regions logical. Should regions be ordered too?
 #' @return input matrix ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
