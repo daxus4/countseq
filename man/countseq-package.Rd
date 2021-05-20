@@ -27,5 +27,6 @@ Raffaelli (2021) Some paper. Journal, volume, issue.\cr
 Davide Raffaelli [aut, cre]\cr
 Politecnico di Milano\cr
 Maintainer: Davide Raffaelli\cr
-E-Mail: \href{mailto:davide2.raffaelli@mailpolimi.it}{davide2.raffaelli@mailpolimi.it}
+E-Mail: \cr
+\href{mailto:davide2.raffaelli@mailpolimi.it}{davide2.raffaelli@mailpolimi.it}
 }
