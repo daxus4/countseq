@@ -38,6 +38,12 @@
 #' @importFrom GenomicRanges seqnames start
 #' @export
 sortSeqsMatrix <- function(seqsMat, decreasing, order.regions = FALSE) {
+    #Check if seqsMat is a matrix of numerics
+    if(!is.matrix(seqsMat))
+        stop("This function require that seqsMat is a matrix of numerics")
+    if(!all(apply(seqsMat, 1 , function(row) {all(is.numeric(row))})))
+        stop("This function require that seqsMat is a matrix of numerics")
+    
     #Check input
     if (!is.logical(decreasing)) {
         stop("decreasing must be logical!")
