@@ -19,3 +19,4 @@ Depends: R(>= 4.0)
 Imports: BSgenome, GenomicRanges, utils
 Suggests: knitr, rmarkdown, BiocStyle, BSgenome.Hsapiens.UCSC.hg38, Biostrings,
   testthat
+VignetteBuilder: knitr

@@ -1,0 +1,100 @@
+---
+title: "A brief introduction to countseq package"
+author:
+- name: "Davide Raffaelli"
+  affiliation: Politecnico di Milano
+  email: davide2.raffaelli@mail.polimi.it
+date: "`r Sys.Date()`"
+output: BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Get overall count of sequences of DNA that match in 
+  regions of a genome}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r style, echo = FALSE, results = 'asis'}
+library(BiocStyle)
+```
+```{r, echo = FALSE}
+library(knitr)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(countseq)
+```
+
+# Introduction
+The `r Rpackage("countseq")` package provides functions that allows you to get
+overall count of sequences of DNA that match in regions of a genome and other
+useful functions to manage and store this data.
+
+# Functions
+
+## Get matrix of overall counts
+
+Get matrix of **overall counts** is simple and require only one function: 
+countSeqsMatrix. You have to pass a genome, the regions and the sequences.
+
+```{r}
+#Charge Hsapiens genome
+library(BSgenome.Hsapiens.UCSC.hg38)
+
+#Get a GRanges object which contains regions of interest
+library(GenomicRanges)
+regs <-GRanges("chr1", IRanges(1e6 + c(1,101), width=100))
+
+#Vector of strings which contains the sequences to be mapped
+seqs <- c("AA", "AT", "GG")
+
+countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+```
+
+## Sort the matrix obtained from countSeqsMatrix
+
+If you need to sort the matrix of overall counts, because you have to do some
+operations which require a ordered matrix, this package provide the function
+sortSeqsMatrix. You have to just pass the matrix and tell you want the matrix
+sorted in decreasing or increasing way.
+
+```{r}
+#Create matrix
+matSeqs <- matrix(data = c(0,3,1,0,20,13), nrow = 2)
+rownames(matSeqs) <- c("chr1:1000001", "chr1:1000101")
+colnames(matSeqs) <- c("seq1", "seq2", "seq3")
+
+#Sort matrix in descreasign way
+sortSeqsMatrix(matSeqs, TRUE)
+```
+
+## Save and get matrix from a file
+
+In order to save the matrix that you obtained and to retrive it, this package
+allows you to save the matrix of overall counts in a **.txt file** with 
+writeToFile function. You can also read this file in order to get the matrix 
+when you need, with readFromFile function.
+
+```{r}
+#Create matrix
+matSeqs <- matrix(data = c(0,3,1,0,20,13), nrow = 2)
+rownames(matSeqs) <- c("chr1:1000001", "chr1:1000101")
+colnames(matSeqs) <- c("seq1", "seq2", "seq3")
+
+#Save matrix in a text file
+writeToFile(mat_check, "matrix.txt")
+
+#Get matrix from file
+m <- readFromFile(filename)
+m
+
+#remove file
+file.remove(filename)
+
+```
