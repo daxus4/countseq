@@ -52,7 +52,7 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
     if(is.character(sequences)){
       sequences <- DNAStringSet(sequences)
     } else {
-      stop("sequences must inherits fom DNAStringSet")
+      stop("sequences must inherits fom DNAStringSet or be a vector of strings")
     }
   }
   #Extract sequence from genome's regions and calculate matrix with return

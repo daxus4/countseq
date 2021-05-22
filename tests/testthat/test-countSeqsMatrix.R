@@ -68,4 +68,11 @@ test_that("Test if check on parameters work", {
     countSeqsMatrix(
       BSgenome.Hsapiens.UCSC.hg38::Hsapiens, TRUE, seqs),
     "regions must inherits fom GRanges")
+  
+  #check if get error when regions doesn't inherit from GRanges
+  expect_error(
+    countSeqsMatrix(
+      BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, regs),
+    "sequences must inherits fom DNAStringSet or be a vector of strings")
+  
 })
