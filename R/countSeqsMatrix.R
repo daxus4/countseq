@@ -13,7 +13,8 @@
 #' @param reduced boolean. It specify if the columns and rows full of zeros have
 #' to be deleted
 #' @param ordered boolean. It specify if the sequences should be ordered in
-#' descreasing order. If you want a different order please use sortSeqsMatrix
+#' descreasing order. If you want a different order options please use 
+#' sortSeqsMatrix
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -55,6 +56,13 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
       stop("sequences must inherits fom DNAStringSet or be a vector of strings")
     }
   }
+  if(!is.logical(reduced)) {
+    stop("reduced must be logical")
+  }
+  if(!is.logical(ordered)) {
+    stop("ordered must be logical")
+  }
+  
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)

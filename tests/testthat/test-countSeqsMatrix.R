@@ -75,4 +75,53 @@ test_that("Test if check on parameters work", {
       BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, regs),
     "sequences must inherits fom DNAStringSet or be a vector of strings")
   
+  #check if get error when reduced isn't logical
+  expect_error(
+    countSeqsMatrix(
+      BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs, reduced = "4"),
+    "reduced must be logical")
+  
+  #check if get error when reduced isn't logical
+  expect_error(
+    countSeqsMatrix(
+      BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs, ordered = "4"),
+    "ordered must be logical")
+})
+
+
+
+test_that("Test if reduced works", {
+  #Create arguments for countSeqsMatrix
+  regs <-GRanges("chr1", IRanges(1e6 + c(1,101,201), width=100))
+  seqs <- DNAStringSet(c("AATG", "ATA", "GCGC"))
+  
+  #Create matrix that contains right result
+  mat_check <- matrix(data = c(0,1,5,2), nrow = 2)
+  rownames(mat_check) <- c("chr1:1000001", "chr1:1000201")
+  colnames(mat_check) <- c("seq1", "seq3")
+  
+  #Get matrix from countSeqsMatrix which have to be checked
+  mat <- countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
+                         regs, seqs, reduced = TRUE)
+  
+  #Check
+  expect_equal(mat, mat_check)
+})
+
+test_that("Test if ordered works", {
+  #Create arguments for countSeqsMatrix
+  regs <-GRanges("chr1", IRanges(1e6 + c(1,101), width=100))
+  seqs <- DNAStringSet(c("AA", "AT", "GC"))
+  
+  #Create matrix that contains right result
+  mat_check <- matrix(data = c(20,12,2,3,0,3), nrow = 2)
+  rownames(mat_check) <- c("chr1:1000001", "chr1:1000101")
+  colnames(mat_check) <- c("seq3", "seq2", "seq1")
+  
+  #Get matrix from countSeqsMatrix which have to be checked
+  mat <- countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens,
+                         regs, seqs, ordered = TRUE)
+  
+  #Check
+  expect_equal(mat, mat_check)
 })
