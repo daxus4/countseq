@@ -8,7 +8,7 @@ countSeqsMatrix(genome, regions, sequences, reduced = FALSE,
 ordered = FALSE)
 }
 \arguments{
-\item{genome}{A genome of BSgenome class}
+\item{genome}{A genome of \link{BSgenome} class}
 
 \item{regions}{A GRanges which specify the interesting regions}
 

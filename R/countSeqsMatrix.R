@@ -6,17 +6,17 @@
 #'
 #' @usage countSeqsMatrix(genome, regions, sequences, reduced = FALSE,
 #' ordered = FALSE)
-#' @param genome A genome of BSgenome class
-#' @param regions A GRanges which specify the interesting regions
-#' @param sequences A DNAStringSet which contains the sequences to be matched
-#' within the regions
+#' @param genome A genome which inherits from \link{BSgenome} class
+#' @param regions A \link{GRanges} which specify the interesting regions
+#' @param sequences A \link{DNAStringSet} or a vector of characters which
+#' contains the sequences to be matched within the regions
 #' @param reduced boolean. It specify if the columns and rows full of zeros have
 #' to be deleted
 #' @param ordered boolean. It specify if the sequences should be ordered in
 #' descreasing order. If you want a different order options please use
-#' sortSeqsMatrix
+#' \link{\code{sortSeqsMatrix}}
 #' @return Matrix of integers, the columns are the sequences, the rows are the
-#' regions and the cells the overall counts
+#' regions and the cells the overall counts of matches
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
 #' <davide2.raffaelli@@mail.polimi.it>
