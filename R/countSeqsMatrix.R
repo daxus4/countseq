@@ -72,9 +72,9 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
   #Give the sequences' names to the columns
   if(is.null(names(sequences))) {
     colnames(mat) <- colnames(mat) <- lapply(sequences, function(seq) {
-      ifelse(length(seq)<10,
+      ifelse(length(seq)<=10,
              as.character(seq),
-             paste0(as.character(seq)[1:9], "..."))})
+             as.character(seq[1:10]))})
   } else {
     colnames(mat) <- names(sequences)
   }
