@@ -4,7 +4,8 @@
 \alias{countSeqsMatrix}
 \title{Count reads mapped on multiple regions of a genome}
 \usage{
-countSeqsMatrix(genome, regions, sequences, reduced = FALSE)
+countSeqsMatrix(genome, regions, sequences, reduced = FALSE,
+ordered = FALSE)
 }
 \arguments{
 \item{genome}{A genome of BSgenome class}
@@ -16,6 +17,10 @@ within the regions}
 
 \item{reduced}{boolean. It specify if the columns and rows full of zeros have
 to be deleted}
+
+\item{ordered}{boolean. It specify if the sequences should be ordered in
+descreasing order. If you want a different order options please use
+sortSeqsMatrix}
 }
 \value{
 Matrix of integers, the columns are the sequences, the rows are the

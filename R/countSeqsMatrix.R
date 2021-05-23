@@ -4,7 +4,7 @@
 #' interesting genomic regions. In the count are counted also overlapping
 #' sequences.
 #'
-#' @usage countSeqsMatrix(genome, regions, sequences, reduced = FALSE, 
+#' @usage countSeqsMatrix(genome, regions, sequences, reduced = FALSE,
 #' ordered = FALSE)
 #' @param genome A genome of BSgenome class
 #' @param regions A GRanges which specify the interesting regions
@@ -13,7 +13,7 @@
 #' @param reduced boolean. It specify if the columns and rows full of zeros have
 #' to be deleted
 #' @param ordered boolean. It specify if the sequences should be ordered in
-#' descreasing order. If you want a different order options please use 
+#' descreasing order. If you want a different order options please use
 #' sortSeqsMatrix
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts
@@ -39,6 +39,7 @@
 #' @importFrom BSgenome getSeq
 #' @importFrom BSgenome vcountPattern
 #' @importFrom GenomicRanges seqnames start
+#' @importFrom Biostrings DNAStringSet
 #' @export
 countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
                             ordered = FALSE) {
@@ -62,13 +63,13 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
   if(!is.logical(ordered)) {
     stop("ordered must be logical")
   }
-  
+
   #Extract sequence from genome's regions and calculate matrix with return
   #values
   dnaSet <- BSgenome::getSeq(genome, regions)
   mat <- vapply(sequences, BSgenome::vcountPattern, numeric(length(regions)),
                 dnaSet)
-  
+
   #Give the sequences' names to the columns
   if(is.null(names(sequences))) {
     colnames(mat) <- colnames(mat) <- lapply(sequences, function(seq) {
@@ -78,17 +79,17 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
   } else {
     colnames(mat) <- names(sequences)
   }
-  
+
   #Give the regions' names to the rows
   rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
                          GenomicRanges::start(regions), sep = ":")
-  
+
   if(reduced) {
     #Delete rows and coloums with all zeros
     mat <- mat[rowSums(mat) > 0,]
     mat <- mat[, colSums(mat) > 0]
   }
-  
+
   if(ordered) {
     mat <- sortSeqsMatrix(mat, TRUE)
   }

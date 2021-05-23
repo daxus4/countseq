@@ -2,14 +2,14 @@
 % Please edit documentation in R/sortSeqsMatrix.R
 \name{sortSeqsMatrix}
 \alias{sortSeqsMatrix}
-\title{Sort matrix returned from countSeqsMatrix}
+\title{Sort matrix columns (sequences) of matrix returned from countSeqsMatrix}
 \usage{
 sortSeqsMatrix(seqsMat, decreasing, order.regions = FALSE)
 }
 \arguments{
 \item{seqsMat}{A matrix returned from countSeqsMatrix}
 
-\item{decreasing}{logical. Should the sort order be increasing or decreasing?}
+\item{decreasing}{logical. Should the sort order be decreasing?}
 
 \item{order.regions}{logical. Should regions be ordered too?}
 }

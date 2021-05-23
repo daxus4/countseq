@@ -33,3 +33,5 @@ po/*~
 .Rbuildignore
 countseq.Rproj
 inst/doc
+/doc/
+/Meta/

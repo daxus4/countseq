@@ -16,7 +16,6 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: R(>= 4.0)
-Imports: BSgenome, GenomicRanges, utils
-Suggests: knitr, rmarkdown, BiocStyle, BSgenome.Hsapiens.UCSC.hg38, Biostrings,
-  testthat
+Imports: BSgenome, GenomicRanges, utils, Biostrings
+Suggests: knitr, rmarkdown, BiocStyle, BSgenome.Hsapiens.UCSC.hg38, testthat
 VignetteBuilder: knitr

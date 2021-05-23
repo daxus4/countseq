@@ -7,8 +7,7 @@ author:
 date: "`r Sys.Date()`"
 output: BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Get overall count of sequences of DNA that match in 
-  regions of a genome}
+  %\VignetteIndexEntry{A brief introduction to countseq package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -43,7 +42,7 @@ useful functions to manage and store this data.
 Get matrix of **overall counts** is simple and require only one function: 
 countSeqsMatrix. You have to pass a genome, the regions and the sequences.
 
-```{r}
+```{r, message=FALSE}
 #Charge Hsapiens genome
 library(BSgenome.Hsapiens.UCSC.hg38)
 
@@ -88,13 +87,13 @@ rownames(matSeqs) <- c("chr1:1000001", "chr1:1000101")
 colnames(matSeqs) <- c("seq1", "seq2", "seq3")
 
 #Save matrix in a text file
-writeToFile(mat_check, "matrix.txt")
+writeToFile(matSeqs, "matrix.txt")
 
 #Get matrix from file
-m <- readFromFile(filename)
+m <- readFromFile("matrix.txt")
 m
 
 #remove file
-file.remove(filename)
+file.remove("matrix.txt")
 
 ```
