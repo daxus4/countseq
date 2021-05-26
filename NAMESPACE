@@ -2,7 +2,7 @@
 
 export(countSeqsMatrix)
 export(readFromFile)
-export(sortSeqsMatrix)
+export(sortMatrix)
 export(writeToFile)
 importFrom(BSgenome,getSeq)
 importFrom(BSgenome,vcountPattern)

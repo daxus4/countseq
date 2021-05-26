@@ -8,23 +8,23 @@ countSeqsMatrix(genome, regions, sequences, reduced = FALSE,
 ordered = FALSE)
 }
 \arguments{
-\item{genome}{A genome of \link{BSgenome} class}
+\item{genome}{A genome which inherits from \link{BSgenome} class}
 
-\item{regions}{A GRanges which specify the interesting regions}
+\item{regions}{A \link{GRanges} which specify the interesting regions}
 
-\item{sequences}{A DNAStringSet which contains the sequences to be matched
-within the regions}
+\item{sequences}{A \link{DNAStringSet} or a vector of characters which
+contains the sequences to be matched within the regions}
 
 \item{reduced}{boolean. It specify if the columns and rows full of zeros have
 to be deleted}
 
 \item{ordered}{boolean. It specify if the sequences should be ordered in
 descreasing order. If you want a different order options please use
-sortSeqsMatrix}
+\link{\code{sortMatrix}}}
 }
 \value{
 Matrix of integers, the columns are the sequences, the rows are the
-regions and the cells the overall counts
+regions and the cells the overall counts of matches
 }
 \description{
 This function returns an overall count for each search sequence within the

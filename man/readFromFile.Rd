@@ -2,25 +2,30 @@
 % Please edit documentation in R/readFromFile.R
 \name{readFromFile}
 \alias{readFromFile}
-\title{Read from a file a matrix of integers, with rownames and colnames}
+\title{Read from a file a matrix of numerics, with rownames and colnames}
 \usage{
-readFromFile(filename)
+readFromFile(filename, integers = FALSE)
 }
 \arguments{
 \item{filename}{string. Name of the file where the matrix is saved}
+
+\item{integers}{boolean. Have this matrix to contain only integers?}
 }
 \value{
 matrix of integers, with rownames and colnames
 }
 \description{
-This function read from a file a matrix obtained from
-\code{\link{countSeqsMatrix}} and written into it or any other matrix which
-contains only integers and with rownames and colnames
+This function read from a file a numerical matrix, with rownames and
+colnames. It is useful for \link{countseq} package, because it allows to
+load a matrix obtained from \link{\code{countSeqsMatrix}} function and stored
+in a file, by specifying with the parameter integers that this matrix have to
+contain only integers
 }
 \examples{
 
 #Get a matrix of integers with rownames and colnames from matrix.txt
-readFromFile(system.file("extdata", "matrix.txt", package = "countseq"))
+readFromFile(system.file("extdata", "matrix.txt", package = "countseq"),
+    integers=TRUE)
 
 }
 \author{

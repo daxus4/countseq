@@ -2,13 +2,13 @@
 % Please edit documentation in R/writeToFile.R
 \name{writeToFile}
 \alias{writeToFile}
-\title{Write to a file a matrix obtained from \code{\link{countSeqsMatrix}}}
+\title{Write to a file a matrix of numerics}
 \usage{
 writeToFile(matrix, filename)
 }
 \arguments{
 \item{matrix}{A matrix returned from \code{\link{countSeqsMatrix}} or any
-matrix which contains only integers and with rownames and colnames}
+matrix which contains only numerics, with rownames and colnames}
 
 \item{filename}{string. Name of the file where the matrix will be saved}
 }
@@ -16,9 +16,9 @@ matrix which contains only integers and with rownames and colnames}
 TRUE if the file is created, FALSE otherwise
 }
 \description{
-This function write to a file a matrix obtained from
-\code{\link{countSeqsMatrix}} or any other matrix which contains only
-integers and with rownames and colnames
+This function write to a file a matrix of numerics, with rownames and
+colnames. It is useful for \link{countseq} package, because it allows to
+order the matrix returned from \link{\code{countSeqsMatrix}} function.
 }
 \examples{
 
