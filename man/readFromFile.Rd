@@ -17,7 +17,7 @@ matrix of integers, with rownames and colnames
 \description{
 This function read from a file a numerical matrix, with rownames and
 colnames. It is useful for \link{countseq} package, because it allows to
-load a matrix obtained from \link{\code{countSeqsMatrix}} function and stored
+load a matrix obtained from \code{\link{countSeqsMatrix}} function and stored
 in a file, by specifying with the parameter integers that this matrix have to
 contain only integers
 }

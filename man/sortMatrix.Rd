@@ -19,7 +19,7 @@ input matrix ordered depending on the parameters
 \description{
 This function sort columns of matrix of numerics. It is useful for
 \link{countseq} package, because it allows to order the matrix returned from
-\link{\code{countSeqsMatrix}} function.
+\code{\link{countSeqsMatrix}} function.
 }
 \examples{
 
@@ -27,7 +27,7 @@ This function sort columns of matrix of numerics. It is useful for
 mat <- matrix(c(6,4,0,7), nrow=2)
 
 #Order matrix of matches
-sortMatrix(matSeqs, FALSE, TRUE)
+sortMatrix(mat, FALSE, TRUE)
 }
 \seealso{
 \code{\link{countSeqsMatrix}}\cr

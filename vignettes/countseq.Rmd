@@ -1,15 +1,15 @@
 ---
 title: "A brief introduction to countseq package"
 author:
-- name: "Davide Raffaelli"
-  affiliation: Politecnico di Milano
-  email: davide2.raffaelli@mail.polimi.it
+-   name: "Davide Raffaelli"
+    affiliation: Politecnico di Milano
+    email: davide2.raffaelli@mail.polimi.it
 date: "`r Sys.Date()`"
 output: BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{A brief introduction to countseq package}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{A brief introduction to countseq package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
 ---
 
 ```{r style, echo = FALSE, results = 'asis'}
@@ -21,8 +21,8 @@ library(knitr)
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>"
 )
 ```
 
@@ -58,10 +58,10 @@ countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 
 ## Sort the matrix obtained from countSeqsMatrix
 
-If you need to **sort** the matrix of overall counts, because you have to do some
-operations which require a ordered matrix, this package provide the function
-**sortMatrix**. You have to just pass the matrix and tell you want the matrix
-sorted in decreasing or increasing way.
+If you need to **sort** the matrix of overall counts, because you have to do 
+some operations which require a ordered matrix, this package provide the 
+function **sortMatrix**. You have to just pass the matrix and tell you want the 
+matrix sorted in decreasing or increasing way.
 
 ```{r}
 #Create matrix
@@ -77,8 +77,8 @@ sortMatrix(matSeqs, TRUE)
 
 In order to save the matrix that you obtained and to retrive it, this package
 allows you to save the matrix of overall counts in a **.txt file** with 
-**writeToFile** function. You can also read this file in order to get the matrix 
-when you need, with **readFromFile** function.
+**writeToFile** function. You can also read this file in order to get the 
+matrix when you need, with **readFromFile** function.
 
 ```{r}
 #Create matrix

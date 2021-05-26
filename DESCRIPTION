@@ -1,6 +1,6 @@
 Package: countseq
 Title: Map multiple reads on multiple regions of a genome
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person(given = "Davide",
            family = "Raffaelli",
@@ -18,4 +18,5 @@ RoxygenNote: 7.1.1
 Depends: R(>= 4.0)
 Imports: BSgenome, GenomicRanges, utils, Biostrings
 Suggests: knitr, rmarkdown, BiocStyle, BSgenome.Hsapiens.UCSC.hg38, testthat
+biocViews: Software, Genetics, SequenceMatching
 VignetteBuilder: knitr

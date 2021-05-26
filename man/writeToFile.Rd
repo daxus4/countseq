@@ -18,7 +18,7 @@ TRUE if the file is created, FALSE otherwise
 \description{
 This function write to a file a matrix of numerics, with rownames and
 colnames. It is useful for \link{countseq} package, because it allows to
-order the matrix returned from \link{\code{countSeqsMatrix}} function.
+order the matrix returned from \code{\link{countSeqsMatrix}} function.
 }
 \examples{
 

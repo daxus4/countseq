@@ -20,7 +20,7 @@ to be deleted}
 
 \item{ordered}{boolean. It specify if the sequences should be ordered in
 descreasing order. If you want a different order options please use
-\link{\code{sortMatrix}}}
+\code{\link{sortMatrix}}}
 }
 \value{
 Matrix of integers, the columns are the sequences, the rows are the
@@ -46,9 +46,6 @@ seqs <- DNAStringSet(c("AA", "AT", "GG"))
 
 countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 
-}
-\references{
-\url{https://en.wikipedia.org/wiki/Genome}\cr
 }
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
