@@ -8,8 +8,8 @@ Authors@R:
            email = "davide2.raffaelli@mail.polimi.it")
 Description: This package provides functions to map multiple reads on multiple
   regions of a given genome and to give you useful information about these
-  alignments. It use functions from GenomicsRanges to calculate the overall
-  counts of sequences' matches per regions.
+  alignments. It contains methods to save and load results in .txt files.
+  This package is made for a university project.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
