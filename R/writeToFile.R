@@ -1,12 +1,12 @@
-#' Write to a file a matrix obtained from \code{\link{countSeqsMatrix}}
+#' Write to a file a matrix of numerics
 #'
-#' This function write to a file a matrix obtained from
-#' \code{\link{countSeqsMatrix}} or any other matrix which contains only
-#' integers and with rownames and colnames
+#' This function write to a file a matrix of numerics, with rownames and
+#' colnames. It is useful for \link{countseq} package, because it allows to
+#' order the matrix returned from \link{\code{countSeqsMatrix}} function.
 #'
 #' @usage writeToFile(matrix, filename)
 #' @param matrix A matrix returned from \code{\link{countSeqsMatrix}} or any
-#' matrix which contains only integers and with rownames and colnames
+#' matrix which contains only numerics, with rownames and colnames
 #' @param filename string. Name of the file where the matrix will be saved
 #' @return TRUE if the file is created, FALSE otherwise
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -25,21 +25,25 @@
 #' @importFrom utils write.table
 #' @export
 writeToFile <- function(matrix, filename){
+    #Check if matrix is a numeric matrix
     if(!is.matrix(matrix))
-        stop("This function require that matrix is a matrix of integers")
-    if(!all(apply(matrix, 1 , function(row) {all(is.numeric(row))})))
-        stop("This function require that matrix is a matrix of integers")
-    if(any(matrix%%1 != 0))
-        stop("This function require that matrix is a matrix of integers")
+        stop("This function require that matrix is a matrix of numerics")
+    if(!is.numeric(matrix))
+        stop("This function require that matrix is a matrix of numerics")
 
+    #Check if matrix has got rownames and colnames
     if(length(rownames(matrix)) != nrow(matrix) |
         length(colnames(matrix)) != ncol(matrix)){
         stop("Every row/column must have a name")
     }
-    if(!is.character(filename)){
+
+    #Check if filename is a string
+    if(!is.character(filename))
         stop("filename must be a character")
-    }
+
+    #Write matrix into file
     utils::write.table(matrix, file = filename, row.names = TRUE,
                         col.names = TRUE)
+
     return(file.exists(filename))
 }

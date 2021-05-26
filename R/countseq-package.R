@@ -2,7 +2,9 @@
 #' interesting genomic regions.
 #'
 #' The \code{countseq} package implements several functions for count for each
-#' search sequence within the interesting genomic regions.
+#' search sequence within the interesting genomic regions. It contains methods
+#' to save and load results in .txt files.
+#' This package is made for a university project.
 #'
 #' \tabular{ll}{
 #' Package: \tab countseq\cr
@@ -21,5 +23,5 @@
 #' E-Mail: \cr
 #' <davide2.raffaelli@@mailpolimi.it>
 #' @references \url{https://github.com/daxus4/countseq}\cr
-#' Raffaelli (2021) Some paper. Journal, volume, issue.\cr
+#' Raffaelli (2021) Politecnico di Milano\cr
 NULL

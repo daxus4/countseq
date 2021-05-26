@@ -14,7 +14,7 @@
 #' to be deleted
 #' @param ordered boolean. It specify if the sequences should be ordered in
 #' descreasing order. If you want a different order options please use
-#' \link{\code{sortSeqsMatrix}}
+#' \link{\code{sortMatrix}}
 #' @return Matrix of integers, the columns are the sequences, the rows are the
 #' regions and the cells the overall counts of matches
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
@@ -43,26 +43,24 @@
 #' @export
 countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
                             ordered = FALSE) {
-  if(!inherits(genome, "BSgenome")){
+  #Check parameters type
+  if(!inherits(genome, "BSgenome"))
     stop("genome must inherits fom BSgenome")
-  }
-  if(!inherits(regions, "GRanges")){
+  if(!inherits(regions, "GRanges"))
     stop("regions must inherits fom GRanges")
-  }
   if(!inherits(sequences, "DNAStringSet")){
     #If sequences is a vector of strings convert it in a DNAStringSet
-    if(is.character(sequences)){
+    if(is.character(sequences))
       sequences <- DNAStringSet(sequences)
-    } else {
+    else
       stop("sequences must inherits fom DNAStringSet or be a vector of strings")
-    }
   }
-  if(!is.logical(reduced)) {
+
+  #Check logical parameters type
+  if(!is.logical(reduced))
     stop("reduced must be logical")
-  }
-  if(!is.logical(ordered)) {
+  if(!is.logical(ordered))
     stop("ordered must be logical")
-  }
 
   #Extract sequence from genome's regions and calculate matrix with return
   #values
@@ -76,9 +74,8 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
       ifelse(length(seq)<=10,
              as.character(seq),
              as.character(seq[1:10]))})
-  } else {
+  } else
     colnames(mat) <- names(sequences)
-  }
 
   #Give the regions' names to the rows
   rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
@@ -90,9 +87,9 @@ countSeqsMatrix <- function(genome, regions, sequences, reduced = FALSE,
     mat <- mat[, colSums(mat) > 0]
   }
 
-  if(ordered) {
+
+  if(ordered)
     mat <- sortSeqsMatrix(mat, TRUE)
-  }
-  return(mat)
+
   return(mat)
 }
