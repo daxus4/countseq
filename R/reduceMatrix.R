@@ -5,14 +5,14 @@
 #' and sequences with no match in the matrix returned from
 #' \code{\link{countSeqsMatrix}} function.
 #'
-#' @usage reduceMatrix(mat rows = TRUE, cols = TRUE)
+#' @usage reduceMatrix(mat, rows = TRUE, cols = TRUE)
 #' @param mat matrix of numerics
 #' @param rows logical. Should rows full of zero be deleted?
 #' @param cols logical. Should columns full of zero be deleted?
 #' @return input matrix without rows/columns full of zeros
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
-#' <davide2.raffaelli@@mail.polimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @seealso \code{\link{countSeqsMatrix}}\cr
 #' @examples
 #'
@@ -23,24 +23,24 @@
 #' reduceMatrix(mat)
 #' @export
 reduceMatrix <- function(mat, rows = TRUE, cols = TRUE) {
-  #Check if mat is a matrix of numerics
-  if(!is.matrix(mat))
-    stop("This function require that mat is a matrix of numerics")
-  if(!is.numeric(mat))
-    stop("This function require that mat is a matrix of numerics")
+    #Check if mat is a matrix of numerics
+    if(!is.matrix(mat))
+        stop("This function require that mat is a matrix of numerics")
+    if(!is.numeric(mat))
+        stop("This function require that mat is a matrix of numerics")
 
-  #Check logical input
-  if (!is.logical(rows))
-    stop("rows must be logical!")
-  if (!is.logical(cols))
-    stop("cols must be logical!")
+    #Check logical input
+    if (!is.logical(rows))
+        stop("rows must be logical!")
+    if (!is.logical(cols))
+        stop("cols must be logical!")
 
-  #Delete rows full of zeros
-  if(rows)
-    mat <- mat[rowSums(mat) > 0,]
-  #Delete columns full of zeros
-  if(cols)
-    mat <- mat[, colSums(mat) > 0]
+    #Delete rows full of zeros
+    if(rows)
+        mat <- mat[rowSums(mat) > 0,,drop = FALSE]
+    #Delete columns full of zeros
+    if(cols)
+        mat <- mat[, colSums(mat) > 0, drop = FALSE]
 
-  return(mat)
+    return(mat)
 }
