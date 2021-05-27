@@ -11,7 +11,7 @@
 #' @return TRUE if the file is created, FALSE otherwise
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
-#' <davide2.raffaelli@@mail.polimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @examples
 #'
 #' #Get a matrix of integers with rownames and colnames

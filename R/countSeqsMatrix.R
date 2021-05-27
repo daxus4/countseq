@@ -11,7 +11,8 @@
 #' @param sequences A \link{DNAStringSet} or a vector of characters which
 #' contains the sequences to be matched within the regions
 #' @param reduced boolean. It specify if the columns and rows full of zeros have
-#' to be deleted
+#' to be deleted. If you want a different reduce options please use
+#' \code{\link{reduceMatrix}}
 #' @param ordered boolean. It specify if the sequences should be ordered in
 #' descreasing order. If you want a different order options please use
 #' \code{\link{sortMatrix}}
@@ -19,7 +20,7 @@
 #' regions and the cells the overall counts of matches
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
-#' <davide2.raffaelli@@mail.polimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @examples
 #'
 #' #Charge Hsapiens genome
@@ -52,8 +53,8 @@ countSeqsMatrix <- function(genome, regions, sequences,
         if(is.character(sequences))
             sequences <- DNAStringSet(sequences)
         else
-            stop("sequences must inherits fom DNAStringSet " +
-                    "or be a vector of strings")
+            stop(paste0("sequences must inherits fom DNAStringSet or be ",
+                    "a vector of strings"))
     }
 
     #Check logical parameters type
@@ -72,8 +73,7 @@ countSeqsMatrix <- function(genome, regions, sequences,
     if(is.null(names(sequences))) {
         colnames(mat) <- colnames(mat) <- lapply(sequences, function(seq) {
             ifelse(length(seq)<=10,
-                as.character(seq),
-                as.character(seq[seq_len(10)]))})
+                as.character(seq), as.character(seq[seq_len(10)]))})
     } else
         colnames(mat) <- names(sequences)
 
@@ -81,13 +81,10 @@ countSeqsMatrix <- function(genome, regions, sequences,
     rownames(mat) <- paste(as.vector(GenomicRanges::seqnames(regions)),
                             GenomicRanges::start(regions), sep = ":")
 
-    if(reduced) {
-        #Delete rows and coloums with all zeros
-        mat <- mat[rowSums(mat) > 0,]
-        mat <- mat[, colSums(mat) > 0]
-    }
-
-
+    #Delete rows and coloums with all zeros
+    if(reduced)
+        mat <- reduceMatrix(mat)
+    #Order sequences
     if(ordered)
         mat <- sortMatrix(mat, TRUE)
 

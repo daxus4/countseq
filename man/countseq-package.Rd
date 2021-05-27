@@ -30,5 +30,5 @@ Davide Raffaelli [aut, cre]\cr
 Politecnico di Milano\cr
 Maintainer: Davide Raffaelli\cr
 E-Mail: \cr
-\href{mailto:davide2.raffaelli@mailpolimi.it}{davide2.raffaelli@mailpolimi.it}
+\href{mailto:davide.raffaellii@gmail.com}{davide.raffaellii@gmail.com}
 }

@@ -11,7 +11,7 @@
 #' @return input matrix ordered depending on the parameters
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
-#' <davide2.raffaelli@@mail.polimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @seealso \code{\link{countSeqsMatrix}}\cr
 #' @examples
 #'
@@ -25,7 +25,7 @@ sortMatrix <- function(mat, decreasing, order.rows = FALSE) {
     #Check if mat is a matrix of numerics
     if(!is.matrix(mat))
         stop("This function require that mat is a matrix of numerics")
-    if(!all(apply(mat, 1 , function(row) {all(is.numeric(row))})))
+    if(!is.numeric(mat))
         stop("This function require that mat is a matrix of numerics")
 
     #Check logical input

@@ -16,7 +16,8 @@ ordered = FALSE)
 contains the sequences to be matched within the regions}
 
 \item{reduced}{boolean. It specify if the columns and rows full of zeros have
-to be deleted}
+to be deleted. If you want a different reduce options please use
+\code{\link{reduceMatrix}}}
 
 \item{ordered}{boolean. It specify if the sequences should be ordered in
 descreasing order. If you want a different order options please use
@@ -50,5 +51,5 @@ countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 Raffaelli\cr E-Mail:
-\href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
+\href{mailto:davide.raffaellii@gmail.com}{davide.raffaellii@gmail.com}
 }

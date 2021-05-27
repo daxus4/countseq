@@ -21,7 +21,7 @@
 #' Politecnico di Milano\cr
 #' Maintainer: Davide Raffaelli\cr
 #' E-Mail: \cr
-#' <davide2.raffaelli@@mailpolimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @references \url{https://github.com/daxus4/countseq}\cr
 #' Raffaelli (2021) Politecnico di Milano\cr
 NULL

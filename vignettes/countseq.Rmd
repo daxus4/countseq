@@ -3,7 +3,7 @@ title: "A brief introduction to countseq package"
 author:
 -   name: "Davide Raffaelli"
     affiliation: Politecnico di Milano
-    email: davide2.raffaelli@mail.polimi.it
+    email: davide.raffaellii@gmail.com
 date: "`r Sys.Date()`"
 output: BiocStyle::html_document
 vignette: >
@@ -71,6 +71,21 @@ colnames(matSeqs) <- c("seq1", "seq2", "seq3")
 
 #Sort matrix in descreasign way
 sortMatrix(matSeqs, TRUE)
+```
+
+## Delete rows and columns full of zeros
+
+This package also provide the **reduceMatrix** method to delete rows and columns
+full of zeros, in order to exclude them from your calculations or to save space.
+
+```{r}
+#Create matrix
+matSeqs <- matrix(data = c(0,3,1,0,20,13), nrow = 2)
+rownames(matSeqs) <- c("chr1:1000001", "chr1:1000101")
+colnames(matSeqs) <- c("seq1", "seq2", "seq3")
+
+#Reduce matrix
+reduceMatrix(matSeqs)
 ```
 
 ## Save and get matrix from a file

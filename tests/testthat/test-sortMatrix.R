@@ -49,7 +49,7 @@ test_that("Test with order.regions", {
 })
 
 test_that("Test on parameters type", {
-  #Create arguments for writeToFile
+  #Create arguments for sortMatrix
   mat_check <- matrix(data = c(0,3,2,3,16,7), nrow = 2)
   rownames(mat_check) <- c("chr1:1000001", "chr1:1000101")
   colnames(mat_check) <- c("seq1", "seq2", "seq3")

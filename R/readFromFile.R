@@ -12,7 +12,7 @@
 #' @return matrix of integers, with rownames and colnames
 #' @author Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 #' Raffaelli\cr E-Mail:
-#' <davide2.raffaelli@@mail.polimi.it>
+#' <davide.raffaellii@@gmail.com>
 #' @examples
 #'
 #' #Get a matrix of integers with rownames and colnames from matrix.txt
@@ -27,7 +27,7 @@ readFromFile <- function(filename, integers = FALSE){
         stop("filename must be a character")
 
     table <- utils::read.table(filename, header = TRUE, sep = " ",
-                               row.names = 1)
+                                row.names = 1)
 
     #Check if matrix is numeric
     if(!all(apply(table, 2, is.numeric)))

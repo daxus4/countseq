@@ -31,5 +31,5 @@ readFromFile(system.file("extdata", "matrix.txt", package = "countseq"),
 \author{
 Davide Raffaelli\cr Politecnico di Milano\cr Maintainer: Davide
 Raffaelli\cr E-Mail:
-\href{mailto:davide2.raffaelli@mail.polimi.it}{davide2.raffaelli@mail.polimi.it}
+\href{mailto:davide.raffaellii@gmail.com}{davide.raffaellii@gmail.com}
 }

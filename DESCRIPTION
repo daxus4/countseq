@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Davide",
            family = "Raffaelli",
            role = c("aut", "cre"),
-           email = "davide2.raffaelli@mail.polimi.it")
+           email = "davide.raffaellii@gmail.com")
 Description: This package provides functions to map multiple reads on multiple
   regions of a given genome and to give you useful information about these
   alignments. It contains methods to save and load results in .txt files.
