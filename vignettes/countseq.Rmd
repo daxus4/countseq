@@ -41,19 +41,32 @@ useful functions to manage and store this data.
 
 Get matrix of **overall counts** is simple and require only one function: 
 **countSeqsMatrix**. You have to pass a genome, the regions and the sequences.
+This example want to check if there could be a CpG island at the promoters of
+chromosome 22 genes.
 
 ```{r, message=FALSE}
-#Charge Hsapiens genome
-library(BSgenome.Hsapiens.UCSC.hg38)
+ #Check if there are CpG island in gene's promoters of chromosome 22 in human
+ #Charge Hsapiens genome
+ library(BSgenome.Hsapiens.UCSC.hg38)
 
-#Get a GRanges object which contains regions of interest
-library(GenomicRanges)
-regs <-GRanges("chr1", IRanges(1e6 + c(1,101), width=100))
+ #Charge file where are stored genomic positions of TSS in chr22
+ df <- read.table(system.file("extdata", "chr22_unique_txStart.txt",
+     package = "countseq"), header = TRUE)
+ 
+ #Get a GRanges object which contains regions of CpG island
+ library(GenomicRanges)
+ regs <-GRanges("chr22", 
+     IRanges(start = df$txStart -130, end = df$txStart -30))
 
-#Vector of strings which contains the sequences to be mapped
-seqs <- c("AA", "AT", "GG")
+ #Get a DNAStringSet which contains the sequences to be mapped
+ library(Biostrings)
+ seqs <- DNAStringSet(c("CG", "AT", "TA"))
 
-countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+ #Calculate the matrix
+ mat <- countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
+ 
+ #Percentage of promoters that are likely to contain a CpG island
+ sum(mat[,"CG"] > mat[,"AT"] & mat[,"CG"] > mat[,"TA"])/nrow(mat)
 ```
 
 ## Sort the matrix obtained from countSeqsMatrix
