@@ -34,16 +34,22 @@ sequences.
 }
 \examples{
 
+#Check if there are CpG island in gene's promoters of chromosome 22 in human
 #Charge Hsapiens genome
 library(BSgenome.Hsapiens.UCSC.hg38)
 
-#Get a GRanges object which contains regions of interest
+#Charge file where are stored genomic positions of TSS in chr22
+df <- read.table(system.file("extdata", "chr22_unique_txStart.txt",
+    package = "countseq"), header = TRUE)
+
+#Get a GRanges object which contains regions of CpG island
 library(GenomicRanges)
-regs <-GRanges("chr1", IRanges(1e6 + c(1,101), width=100))
+regs <-GRanges("chr22", 
+    IRanges(start = df$txStart -130, end = df$txStart -30))
 
 #Get a DNAStringSet which contains the sequences to be mapped
 library(Biostrings)
-seqs <- DNAStringSet(c("AA", "AT", "GG"))
+seqs <- DNAStringSet(c("CG", "AT", "TA"))
 
 countSeqsMatrix(BSgenome.Hsapiens.UCSC.hg38::Hsapiens, regs, seqs)
 
