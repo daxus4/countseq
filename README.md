@@ -1,6 +1,7 @@
 # countseq
 
 This is a small but useful R package, built using de facto standard genomic Bioconductor packages like Biostrings [1] and GenomicRanges [2], that allows the user to count occurrences of multiple patterns in multiple text strings.
+
 The package is fully tested and documented. It is also conformed to Bioconductor best practices, thanks to several run using BiocCheck [3].
 
 [1] Pagès H, Aboyoun P, Gentleman R, DebRoy S (2022). Biostrings: Efficient manipulation of biological strings. R package version 2.64.0, https://bioconductor.org/packages/Biostrings.
